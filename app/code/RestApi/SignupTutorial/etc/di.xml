@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-  <preference for="RestApi\SignupTutorial\Api\Data\UserInterface" type="RestApi\SignupTutorial\Model\User" />
-  <preference for="RestApi\SignupTutorial\Api\UserManagementInterface" type="RestApi\SignupTutorial\Model\UserManagement" />
-  <preference for="RestApi\SignupTutorial\Api\UserRepositoryInterface" type="RestApi\SignupTutorial\Model\ResourceModel\UserRepository" />
-</config>

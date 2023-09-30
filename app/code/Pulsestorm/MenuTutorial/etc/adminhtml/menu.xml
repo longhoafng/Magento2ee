@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-    <add id="Pulsestorm_MenuTutorial::a_menu_item" resource="Pulsestorm_MenuTutorial::example_1" title="Look at me, I'm a link" action="pulsestorm_menututorial/index/index" module="Pulsestorm_MenuTutorial" sortOrder="9999" parent="Magento_Backend::system_other_settings" dependsOnModule="Magento_Backend"/></menu>
-</config>

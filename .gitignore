@@ -3,6 +3,10 @@
 /app/.htaccess
 /app/autoload.php
 /app/bootstrap.php
+/app/code/PluginTutorial
+/app/code/Pulsestorm
+/app/code/RestApi
+/app/code/Checkout/CustomizeProcess
 
 /bin
 /dev
