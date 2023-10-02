@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <vnpay>
+                <active>1</active>
+                <model>VnpayFacade</model>
+                <order_status>processing</order_status>
+                <title>VNPAY</title>
+                <allowspecific>1</allowspecific>
+                <group>offline</group>
+                <can_use_internal>1</can_use_internal>
+                <can_use_checkout>1</can_use_checkout>
+                <specificcountry>VN</specificcountry>
+                <payment_url>https://sandbox.vnpayment.vn/paymentv2/vpcpay.html</payment_url>
+                <debug>1</debug>
+            </vnpay>
+
+        </payment>
+    </default>
+</config>
