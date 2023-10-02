@@ -6,7 +6,6 @@
 /app/code/PluginTutorial
 /app/code/Pulsestorm
 /app/code/RestApi
-/app/code/Checkout/CustomizeProcess
 
 /bin
 /dev
@@ -18,6 +17,30 @@
 /setup
 /var
 /vendor
+
+/.editorconfig
+/.htaccess
+/.htaccess.sample
+/.php-cs-fixer.cache
+/.php-cs-fixer.dist.php
+/.user.ini
+/auth.json.sample
+/CHANGELOG.md
+/chmod
+/composer.lock
+/composer.json
+/config
+/COPYING.txt
+/grunt-config.json.sample
+/Gruntfile.js.sample
+/LICENSE.txt
+/LICENSE_EE.txt
+/LICENSE_AFL.txt
+/nginx.conf
+/nginx.conf.sample
+/package.json.sample
+/README_EE.md
+/SECURITY.md
 
 /.buildpath
 /.cache
