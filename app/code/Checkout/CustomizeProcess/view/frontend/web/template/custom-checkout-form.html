@@ -1,0 +1,23 @@
+<!--The 'step_code' value from the .js file should be used-->
+<li id="vote-step" class="checkout-vote" data-bind="fadeVisible: isVisible">
+    <div class="step-title" data-bind="i18n: 'Vote'" data-role="title"></div>
+    <div id="checkout-step-title"
+         class="step-content"
+         data-role="content">
+
+        <form id="co-vote-form" class="form" data-bind="submit: setVoteInformation" novalidate="novalidate">
+            <div id="vote-form" class="fieldset address" >
+                <!-- ko foreach: getRegion('additional-fieldsets') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button data-role="opc-continue" type="submit" class="button action continue primary">
+                        <span><!-- ko i18n: 'Next'--><!-- /ko --></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>
