@@ -7,6 +7,7 @@
 /app/code/Pulsestorm
 /app/code/RestApi
 /app/code/Checkout/CustomizeProcess
+/app/code/Checkout/VnpayWallet
 
 /bin
 /dev
