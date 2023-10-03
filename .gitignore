@@ -1,14 +1,11 @@
 /app/design
 /app/etc
 /app/.htaccess
-/app/autoload.php
+/app/autoload.phpLHExpress
 /app/bootstrap.php
 /app/code/PluginTutorial
 /app/code/Pulsestorm
 /app/code/RestApi
-/app/code/Checkout
-/app/code/LongHoang/LHExpress
-/app/code/LongHoang/SendMail
 
 /bin
 /dev
