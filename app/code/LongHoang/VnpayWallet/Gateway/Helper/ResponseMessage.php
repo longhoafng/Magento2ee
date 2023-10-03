@@ -54,55 +54,55 @@ class ResponseMessage
     {
         switch ($responseCode) {
             case self::RES_CODE_00:
-                $result = __("Giao dịch thành công");
+                $result = __("Successful transaction");
                 break;
             case self::RES_CODE_01:
-                $result = __("Giao dịch đã tồn tại");
+                $result = __("The transaction already exists");
                 break;
             case self::RES_CODE_02:
-                $result = __("Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)");
+                $result = __("Merchant is invalid (check vnp_TmnCode again)");
                 break;
             case self::RES_CODE_03:
-                $result = __("Dữ liệu gửi sang không đúng định dạng");
+                $result = __("The data sent is not in the correct format");
                 break;
             case self::RES_CODE_04:
-                $result = __("Khởi tạo GD không thành công do Website đang bị tạm khóa");
+                $result = __("Transaction initiation failed because the Website is temporarily locked");
                 break;
             case self::RES_CODE_05:
-                $result = __("Giao dịch không thành công do: Quý khách nhập sai mật khẩu quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch");
+                $result = __("Transaction failed due to: You entered the wrong password more than the specified number of times. Please retry the transaction");
                 break;
             case self::RES_CODE_06:
-                $result = __("Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.");
+                $result = __("The transaction was unsuccessful because you entered the wrong transaction authentication password (OTP). Please retry the transaction");
                 break;
             case self::RES_CODE_07:
-                $result = __("Giao dịch bị nghi ngờ là giao dịch gian lận");
+                $result = __("The transaction is suspected to be a fraudulent transaction");
                 break;
             case self::RES_CODE_09:
-                $result = __("Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.");
+                $result = __("Transaction failed due to: Customer's card/account has not registered for InternetBanking service at the bank.");
                 break;
             case self::RES_CODE_10:
-                $result = __("Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần");
+                $result = __("Transaction failed due to: Customer verified incorrect card/account information more than 3 times");
                 break;
             case self::RES_CODE_11:
-                $result = __("Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.");
+                $result = __("Transaction failed due to: Payment waiting period has expired. Please retry the transaction.");
                 break;
             case self::RES_CODE_12:
-                $result = __("Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.");
+                $result = __("Transaction failed due to: Customer's card/account is locked.");
                 break;
             case self::RES_CODE_51:
-                $result = __("Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.");
+                $result = __("Transaction failed due to: Your account does not have enough balance to make the transaction.");
                 break;
             case self::RES_CODE_65:
-                $result = __("Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.");
+                $result = __("Transaction failed due to: Your account has exceeded the transaction limit for the day.");
                 break;
             case self::RES_CODE_08:
-                $result = __("Giao dịch không thành công do: Hệ thống Ngân hàng đang bảo trì. Xin quý khách tạm thời không thực hiện giao dịch bằng thẻ/tài khoản của Ngân hàng này.");
+                $result = __("Transaction failed due to: The Banking system is under maintenance. Please temporarily do not make transactions using this Bank's card/account.");
                 break;
             case self::RES_CODE_99:
-                $result = __("Có lỗi sảy ra trong quá trình thực hiện giao dịch");
+                $result = __("An error occurred during the transaction");
                 break;
             default:
-                $result = __("Giao dịch thất bại");
+                $result = __("Transaction failed");
         }
         return $result;
     }

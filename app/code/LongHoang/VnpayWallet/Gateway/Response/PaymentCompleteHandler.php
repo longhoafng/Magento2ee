@@ -46,7 +46,7 @@ class PaymentCompleteHandler implements HandlerInterface
                         $order->setState($orderState)->setStatus($order::STATE_PROCESSING);
                         $order->save();
                     } else {
-                        $order->addStatusHistoryComment(__('Giao dịch thất bại'));
+                        $order->addStatusHistoryComment(__('Transaction failed'));
                         $orderState = $order::STATE_CLOSED;
                         $order->setState($orderState)->setStatus($order::STATE_CLOSED);
                         $order->save();
@@ -54,7 +54,7 @@ class PaymentCompleteHandler implements HandlerInterface
                 }
             }
         } catch (\Exception $e) {
-            throw new CouldNotSaveException(__('Không thể lưu đơn hàng'));
+            throw new CouldNotSaveException(__('Can not save the order'));
         }
     }
 }
