@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="VnPayConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">vnpay</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="LongHoang\VnpayWallet\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">VnPayConfig</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="VnpayFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="string">vnpay</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">LongHoang\VnpayWallet\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">VnpayValueHandlerPool</argument>
+            <argument name="validatorPool" xsi:type="object">VnpayValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">VnpayCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">VnpayDefaultValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayDefaultValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">VnPayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">VnpayCountryValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayCountryValidator" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">VnPayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="pay_url" xsi:type="string">VnpayPayUrlCommand</item>
+                <item name="ipn" xsi:type="string">CompleteCommand</item>
+                <item name="complete" xsi:type="string">CompleteCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CompleteCommand" type="LongHoang\VnpayWallet\Gateway\Command\CompleteCommand">
+        <arguments>
+            <argument name="validator" xsi:type="object">LongHoang\VnpayWallet\Gateway\Validator\CompleteValidator</argument>
+            <argument name="handler" xsi:type="object">LongHoang\VnpayWallet\Gateway\Response\PaymentCompleteHandler</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayPayUrlCommand" type="LongHoang\VnpayWallet\Gateway\Command\PayUrlCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">VnpayUrlDataBuilder</argument>
+            <argument name="transferFactory" xsi:type="object">LongHoang\VnpayWallet\Gateway\Http\TransferFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="VnpayUrlDataBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="payment" xsi:type="string">LongHoang\VnpayWallet\Gateway\Request\PaymentDataBuilder</item>
+                <item name="extra_data" xsi:type="string">LongHoang\VnpayWallet\Gateway\Request\ExtraDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
