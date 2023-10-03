@@ -6,6 +6,9 @@
 /app/code/PluginTutorial
 /app/code/Pulsestorm
 /app/code/RestApi
+/app/code/LongHoang/LHExpress
+/app/code/LongHoang/VnpayWallet
+/app/code/LongHoang/SendMail
 
 /bin
 /dev
