@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Helper;
 
 use Magento\Directory\Helper\Data;
@@ -6,6 +9,9 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Model\Order;
 
+/**
+ * Check rate currency
+ */
 class Rate
 {
     /**
@@ -30,6 +36,8 @@ class Rate
     }
 
     /**
+     * Return VND currency
+     *
      * @param Order  $order
      * @param $amount
      * @return string
@@ -56,6 +64,8 @@ class Rate
     }
 
     /**
+     * Check VND
+     *
      * @param Order $order
      * @return boolean
      * @throws NoSuchEntityException

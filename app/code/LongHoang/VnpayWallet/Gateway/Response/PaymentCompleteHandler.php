@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Response;
 
 use ErrorException;
@@ -7,9 +10,13 @@ use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Sales\Model\Order\Payment;
 
+/**
+ * Save response data from VNPAY
+ */
 class PaymentCompleteHandler implements HandlerInterface
 {
     /**
+     * Save response data
      * @param array $handlingSubject
      * @param array $response
      * @throws ErrorException

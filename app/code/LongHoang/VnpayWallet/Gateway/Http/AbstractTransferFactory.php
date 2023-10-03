@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Http;
 
 use LongHoang\VnpayWallet\Gateway\Helper\CheckData;
@@ -7,6 +10,9 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
 
+/**
+ * Abstract transfer factory class
+ */
 abstract class AbstractTransferFactory implements TransferFactoryInterface
 {
     /** @var ScopeConfigInterface $scopeConfig */
@@ -23,9 +29,9 @@ abstract class AbstractTransferFactory implements TransferFactoryInterface
     protected $jsonFac;
 
     /**
-     * AbstractTransferFactory constructor.
-     *
-     * @param CheckData       $checkData
+     * @param ScopeConfigInterface $scopeConfig
+     * @param CheckData $checkData
+     * @param Json $json
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -38,6 +44,7 @@ abstract class AbstractTransferFactory implements TransferFactoryInterface
     }
 
     /**
+     * Return payment url
      * @retrun string
      */
     protected function getUrl()
@@ -46,6 +53,7 @@ abstract class AbstractTransferFactory implements TransferFactoryInterface
     }
 
     /**
+     * Return class CheckData
      * @return CheckData
      */
     protected function getCheckData()
@@ -54,6 +62,7 @@ abstract class AbstractTransferFactory implements TransferFactoryInterface
     }
 
     /**
+     * Return terminal code
      * @return array
      */
     protected function getPartnerInfo()
@@ -64,6 +73,7 @@ abstract class AbstractTransferFactory implements TransferFactoryInterface
     }
 
     /**
+     * Return hash code
      * @return mixed
      */
     protected function getSecretKey()

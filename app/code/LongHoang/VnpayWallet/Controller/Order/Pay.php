@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Controller\Order;
 
 use LongHoang\VnpayWallet\Gateway\Helper\ResponseMessage;
@@ -14,6 +16,9 @@ use Magento\Payment\Gateway\Helper\ContextHelper;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 
+/**
+ * The address to receive payment results from VNPAY
+ */
 class Pay extends \Magento\Framework\App\Action\Action
 {
 
@@ -47,6 +52,14 @@ class Pay extends \Magento\Framework\App\Action\Action
      */
     private $responseMessage;
 
+    /**
+     * @param Context $context
+     * @param Session $checkoutSession
+     * @param CommandPoolInterface $commandPool
+     * @param PaymentDataObjectFactory $paymentDataObjectFactory
+     * @param OrderRepositoryInterface $orderRepository
+     * @param ResponseMessage $responseMessage
+     */
     public function __construct(
         Context $context,
         Session $checkoutSession,

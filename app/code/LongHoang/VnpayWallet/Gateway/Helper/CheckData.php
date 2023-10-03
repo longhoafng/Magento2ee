@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Helper;
 
 use LongHoang\VnpayWallet\Gateway\Request\AbstractDataBuilder;
 
+/**
+ * Check the integrity of the data
+ */
 class CheckData
 {
     /**

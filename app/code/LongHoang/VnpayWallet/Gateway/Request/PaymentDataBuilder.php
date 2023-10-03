@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Request;
 
 use LongHoang\VnpayWallet\Gateway\Helper\Rate;
@@ -29,6 +32,8 @@ class PaymentDataBuilder extends AbstractDataBuilder implements BuilderInterface
     }
 
     /**
+     * Build payment data
+     *
      * @param array $buildSubject
      * @return array
      * @throws LocalizedException

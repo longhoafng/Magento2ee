@@ -1,7 +1,14 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Request;
 
 use Magento\Payment\Gateway\Request\BuilderInterface;
+
+/**
+ * Abstract class Build data
+ */
 abstract class AbstractDataBuilder implements BuilderInterface
 {
     /**

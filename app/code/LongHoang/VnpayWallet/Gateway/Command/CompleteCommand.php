@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Command;
 
 use Magento\Payment\Gateway\CommandInterface;
@@ -6,6 +9,9 @@ use Magento\Payment\Gateway\Helper\SubjectReader;
 use Magento\Payment\Gateway\Response\HandlerInterface;
 use Magento\Payment\Gateway\Validator\ValidatorInterface;
 
+/**
+ * Complete command payment
+ */
 class CompleteCommand implements CommandInterface
 {
     /**
@@ -23,6 +29,11 @@ class CompleteCommand implements CommandInterface
      */
     private $handler;
 
+    /**
+     * @param SubjectReader $subjectReader
+     * @param ValidatorInterface $validator
+     * @param HandlerInterface $handler
+     */
     public function __construct(
         SubjectReader $subjectReader,
         ValidatorInterface $validator,
@@ -34,6 +45,8 @@ class CompleteCommand implements CommandInterface
     }
 
     /**
+     * Execute command
+     *
      * @param array $commandSubject
      */
     public function execute(array $commandSubject)

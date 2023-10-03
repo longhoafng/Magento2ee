@@ -1,14 +1,21 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Helper;
 
+/**
+ * Checkout response code
+ */
 class ResponseMessage
 {
     /**
      * Get error message
      *
+     * @param string $responseCode
      * @retrun string
      */
-    public function getErrorMess($responseCode)
+    public function getErrorMess(string $responseCode)
     {
         switch ($responseCode) {
             case "00":

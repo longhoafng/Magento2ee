@@ -1,9 +1,17 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Http;
 
+/**
+ * Prepare data to send to payment processor
+ */
 class TransferFactory extends AbstractTransferFactory
 {
     /**
+     * Prepare data
+     *
      * @inheritdoc
      */
     public function create(array $request)

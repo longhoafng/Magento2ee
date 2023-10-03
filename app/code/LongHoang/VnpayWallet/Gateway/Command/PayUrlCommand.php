@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Command;
 
 use Magento\Payment\Gateway\CommandInterface;
@@ -7,6 +10,9 @@ use Magento\Payment\Gateway\Http\ConverterException;
 use Magento\Payment\Gateway\Request\BuilderInterface;
 use Magento\Payment\Gateway\Http\TransferFactoryInterface;
 
+/**
+ * Build url command
+ */
 class PayUrlCommand implements CommandInterface
 {
     /**
@@ -24,7 +30,6 @@ class PayUrlCommand implements CommandInterface
      *
      * @param BuilderInterface         $requestBuilder
      * @param TransferFactoryInterface $transferFactory
-     * @param ClientInterface          $client
      */
     public function __construct(
         BuilderInterface $requestBuilder,
@@ -35,6 +40,7 @@ class PayUrlCommand implements CommandInterface
     }
 
     /**
+     * Execute command
      * @param array $commandSubject
      * @throws ClientException
      * @throws ConverterException

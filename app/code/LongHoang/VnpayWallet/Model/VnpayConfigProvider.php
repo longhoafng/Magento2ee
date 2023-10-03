@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\UrlInterface;
 
+/**
+ * Class config provider
+ */
 class VnpayConfigProvider implements ConfigProviderInterface
 {
     const PAYMENT_METHOD_VNPAY_CODE = 'vnpay';
@@ -27,6 +32,11 @@ class VnpayConfigProvider implements ConfigProviderInterface
         $this->urlBuilder = $urlBuilder;
     }
 
+    /**
+     * Return config
+     *
+     * @return \array[][]
+     */
     public function getConfig()
     {
         return [

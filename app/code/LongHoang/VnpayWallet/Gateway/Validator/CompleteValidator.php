@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Gateway\Validator;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -7,6 +10,9 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Payment\Gateway\Validator\AbstractValidator;
 use Magento\Payment\Gateway\Validator\ResultInterfaceFactory;
 
+/**
+ * Validate response data
+ */
 class CompleteValidator extends AbstractValidator
 {
 
@@ -24,6 +30,8 @@ class CompleteValidator extends AbstractValidator
     }
 
     /**
+     * Validate response data
+     *
      * @param array $validationSubject
      * @throws LocalizedException
      * @throws NoSuchEntityException

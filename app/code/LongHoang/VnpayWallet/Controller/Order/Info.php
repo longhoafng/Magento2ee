@@ -1,16 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LongHoang\VnpayWallet\Controller\Order;
 
 use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Action\Context;
 use Magento\Payment\Gateway\Command\CommandPoolInterface;
+use Magento\Payment\Gateway\Command\ResultInterface;
 use Magento\Payment\Gateway\Data\PaymentDataObjectFactory;
 use Magento\Payment\Gateway\Helper\ContextHelper;
 use Magento\Sales\Api\PaymentFailuresInterface;
 use Magento\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Receive infor after place order
+ */
 class Info extends \Magento\Framework\App\Action\Action
 {
     /**
@@ -43,6 +49,15 @@ class Info extends \Magento\Framework\App\Action\Action
      */
     private $logger;
 
+    /**
+     * @param Context $context
+     * @param Order $order
+     * @param Session $checkoutSession
+     * @param PaymentDataObjectFactory $paymentDataObjectFactory
+     * @param CommandPoolInterface $commandPool
+     * @param PaymentFailuresInterface $paymentFailures
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         Context $context,
         Order $order,
@@ -61,6 +76,11 @@ class Info extends \Magento\Framework\App\Action\Action
         $this->logger = $logger;
     }
 
+    /**
+     * Receive data
+     *
+     * @return ResultInterface|void|null
+     */
     public function execute()
     {
         try {
