@@ -1,5 +1,5 @@
 <?php
-namespace Checkout\LHExpress\Model\Carrier;
+namespace LongHoang\LHExpress\Model\Carrier;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;

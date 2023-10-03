@@ -5,7 +5,7 @@
             <lhexpress>
                 <active>1</active>
                 <sallowspecific>0</sallowspecific>
-                <model>Checkout\LHExpress\Model\Carrier\LHExpress</model>
+                <model>LongHoang\LHExpress\Model\Carrier\LHExpress</model>
                 <name>Long Hoang Express</name>
                 <price>10.00</price>
                 <title>Long Hoang Express</title>
