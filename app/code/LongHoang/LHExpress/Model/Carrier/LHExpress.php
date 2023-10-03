@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace LongHoang\LHExpress\Model\Carrier;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -12,6 +15,9 @@ use Magento\Shipping\Model\Rate\Result;
 use Magento\Shipping\Model\Rate\ResultFactory;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Delivery method model
+ */
 class LHExpress extends AbstractCarrier implements CarrierInterface
 {
     /**
@@ -51,6 +57,8 @@ class LHExpress extends AbstractCarrier implements CarrierInterface
     }
 
     /**
+     * Return config name
+     *
      * @return array
      */
     public function getAllowedMethods()
@@ -59,6 +67,8 @@ class LHExpress extends AbstractCarrier implements CarrierInterface
     }
 
     /**
+     * Return shipping price
+     *
      * @return float
      */
     private function getShippingPrice()
@@ -67,6 +77,8 @@ class LHExpress extends AbstractCarrier implements CarrierInterface
     }
 
     /**
+     * Config delivery method
+     *
      * @param RateRequest $request
      * @return bool|Result
      */
