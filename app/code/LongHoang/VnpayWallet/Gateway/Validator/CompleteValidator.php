@@ -21,6 +21,10 @@ class CompleteValidator extends AbstractValidator
      */
     private $scopeConfig;
 
+    /**
+     * @param ResultInterfaceFactory $resultFactory
+     * @param ScopeConfigInterface $scopeConfig
+     */
     public function __construct(
         ResultInterfaceFactory $resultFactory,
         ScopeConfigInterface $scopeConfig

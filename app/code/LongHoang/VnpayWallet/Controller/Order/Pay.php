@@ -104,15 +104,15 @@ class Pay extends \Magento\Framework\App\Action\Action
             );
 
             if ($result) {
-                if ($vnp_ResponseCode == '00') {
-                    $this->messageManager->addSuccess('Thanh toán thành công qua VNPAY');
+                if ($vnp_ResponseCode == ResponseMessage::RES_CODE_00) {
+                    $this->messageManager->addSuccess(__('Thanh toán thành công qua VNPAY'));
                     return $this->resultRedirectFactory->create()->setPath('checkout/onepage/success');
                 } else {
-                    $this->messageManager->addError('Thanh toán qua VNPAY thất bại. ' . $this->responseMessage->getErrorMess($vnp_ResponseCode));
+                    $this->messageManager->addError(__('Thanh toán qua VNPAY thất bại. ') . $this->responseMessage->getErrorMess($vnp_ResponseCode));
                     return $this->resultRedirectFactory->create()->setPath('checkout/onepage/failure');
                 }
             } else {
-                $this->messageManager->addError('Thanh toán qua VNPAY thất bại.');
+                $this->messageManager->addError(__('Thanh toán qua VNPAY thất bại.'));
                 return $this->resultRedirectFactory->create()->setPath('checkout/onepage/failure');
             }
         }

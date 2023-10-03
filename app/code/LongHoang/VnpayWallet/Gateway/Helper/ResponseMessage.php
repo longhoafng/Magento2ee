@@ -10,6 +10,41 @@ namespace LongHoang\VnpayWallet\Gateway\Helper;
 class ResponseMessage
 {
     /**
+     * Response code
+     */
+    const RES_CODE_00 = '00';
+
+    const RES_CODE_01 = '01';
+
+    const RES_CODE_02 = '02';
+
+    const RES_CODE_03 = '03';
+
+    const RES_CODE_04 = '04';
+
+    const RES_CODE_05 = '05';
+
+    const RES_CODE_06 = '06';
+
+    const RES_CODE_07 = '07';
+
+    const RES_CODE_08 = '08';
+
+    const RES_CODE_09 = '09';
+
+    const RES_CODE_10 = '10';
+
+    const RES_CODE_11 = '11';
+
+    const RES_CODE_12 = '12';
+
+    const RES_CODE_51 = '51';
+
+    const RES_CODE_65 = '65';
+
+    const RES_CODE_99 = '99';
+
+    /**
      * Get error message
      *
      * @param string $responseCode
@@ -18,56 +53,56 @@ class ResponseMessage
     public function getErrorMess(string $responseCode)
     {
         switch ($responseCode) {
-            case "00":
-                $result = "Giao dịch thành công";
+            case self::RES_CODE_00:
+                $result = __("Giao dịch thành công");
                 break;
-            case "01":
-                $result = "Giao dịch đã tồn tại";
+            case self::RES_CODE_01:
+                $result = __("Giao dịch đã tồn tại");
                 break;
-            case "02":
-                $result = "Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)";
+            case self::RES_CODE_02:
+                $result = __("Merchant không hợp lệ (kiểm tra lại vnp_TmnCode)");
                 break;
-            case "03":
-                $result = "Dữ liệu gửi sang không đúng định dạng";
+            case self::RES_CODE_03:
+                $result = __("Dữ liệu gửi sang không đúng định dạng");
                 break;
-            case "04":
-                $result = "Khởi tạo GD không thành công do Website đang bị tạm khóa";
+            case self::RES_CODE_04:
+                $result = __("Khởi tạo GD không thành công do Website đang bị tạm khóa");
                 break;
-            case "05":
-                $result = "Giao dịch không thành công do: Quý khách nhập sai mật khẩu quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch";
+            case self::RES_CODE_05:
+                $result = __("Giao dịch không thành công do: Quý khách nhập sai mật khẩu quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch");
                 break;
-            case "06":
-                $result = "Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.";
+            case self::RES_CODE_06:
+                $result = __("Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.");
                 break;
-            case "07":
-                $result = "Giao dịch bị nghi ngờ là giao dịch gian lận";
+            case self::RES_CODE_07:
+                $result = __("Giao dịch bị nghi ngờ là giao dịch gian lận");
                 break;
-            case "09":
-                $result = "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.";
+            case self::RES_CODE_09:
+                $result = __("Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.");
                 break;
-            case "10":
-                $result = "Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần";
+            case self::RES_CODE_10:
+                $result = __("Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần");
                 break;
-            case "11":
-                $result = "Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.";
+            case self::RES_CODE_11:
+                $result = __("Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.");
                 break;
-            case "12":
-                $result = "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.";
+            case self::RES_CODE_12:
+                $result = __("Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.");
                 break;
-            case "51":
-                $result = "Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.";
+            case self::RES_CODE_51:
+                $result = __("Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.");
                 break;
-            case "65":
-                $result = "Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.";
+            case self::RES_CODE_65:
+                $result = __("Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.");
                 break;
-            case "08":
-                $result = "Giao dịch không thành công do: Hệ thống Ngân hàng đang bảo trì. Xin quý khách tạm thời không thực hiện giao dịch bằng thẻ/tài khoản của Ngân hàng này.";
+            case self::RES_CODE_08:
+                $result = __("Giao dịch không thành công do: Hệ thống Ngân hàng đang bảo trì. Xin quý khách tạm thời không thực hiện giao dịch bằng thẻ/tài khoản của Ngân hàng này.");
                 break;
-            case "99":
-                $result = "Có lỗi sảy ra trong quá trình thực hiện giao dịch";
+            case self::RES_CODE_99:
+                $result = __("Có lỗi sảy ra trong quá trình thực hiện giao dịch");
                 break;
             default:
-                $result = "Giao dịch thất bại - Failured";
+                $result = __("Giao dịch thất bại");
         }
         return $result;
     }
