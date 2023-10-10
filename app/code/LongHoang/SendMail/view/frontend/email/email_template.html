@@ -1,0 +1,13 @@
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr>{{trans "This is an email sent from customer: %customer_name" customer_name=$customer_name}}</tr>
+    <tr>
+        <td>
+            <div>{{trans "Here is customer's order information: "}} </div>
+            <div> {{trans "- ID: %id " id=$id}}  </div>
+            <div> {{trans "- Amount: %amount " amount=$amount}}  </div>
+            <div> {{trans "- Status: %status " status=$status}}  </div>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

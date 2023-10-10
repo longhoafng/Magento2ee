@@ -1,0 +1,59 @@
+<?php
+/**
+ * @var $block \LongHoang\SendMail\Block\Adminhtml\Order\ModalBox
+ */
+?>
+<div id="popup-modal" style="display: none">
+    <form class="modal-send-mail" action="<?= $block->escapeUrl($block->getFormUrl())?>" method="post" id="modal-send-mail">
+        <div class="modal-content">
+            <h2><?= $block->getContent() ?></h2>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function (
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                modalClass: 'modal-popup confirm',
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: 'action-secondary action-dismiss',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }, {
+                    text: $.mage.__('Ok'),
+                    class: 'action-primary action-accept',
+                    click: function () {
+                        $('#modal-send-mail').append($('<input>', {
+                            'name': 'form_key',
+                            'value': window.FORM_KEY,
+                            'type': 'hidden'
+                        }));
+                        $('#modal-send-mail').submit();
+
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+
+            $("#sendconfigemail").click(function () {
+                $("#popup-modal").modal('openModal');
+            });
+        }
+    );
+</script>
