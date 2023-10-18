@@ -1,0 +1,18 @@
+type Query {
+    customer_orders(
+        customer_email: String
+    ): customerOrders @resolver(class:"LongHoang\\GraphqlQuery\\Model\\Resolver\\Order")
+    @cache(cacheable: false)
+}
+type customerOrders {
+    customer_name: String
+    customer_email: String
+    orders: [Order]
+    customer_total_amount: Float
+}
+
+type Order {
+    increment_id: Int
+    order_status: String
+    order_grand_total: Float
+}
