@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <lhexpress>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>LongHoang\LHExpress\Model\Carrier\LHExpress</model>
+                <name>Long Hoang Express</name>
+                <price>10.00</price>
+                <title>Long Hoang Express</title>
+                <specificerrmsg>This delivery service is currently unavailable. If you want to use the service, please contact us!</specificerrmsg>
+                <handling_type>F</handling_type>
+            </lhexpress>
+        </carriers>
+    </default>
+</config>
