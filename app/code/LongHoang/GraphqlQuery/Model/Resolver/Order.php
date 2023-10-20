@@ -21,25 +21,13 @@ use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 class Order implements ResolverInterface
 {
     /**
-     * @var CustomerRepositoryInterface
-     */
-    private $customerRepository;
-
-    /**
-     * @var CollectionFactory
-     */
-    private $orderCollection;
-
-    /**
      * @param CustomerRepositoryInterface $customerRepository
-     * @param CollectionFactory $orderCollection
+     * @param CollectionFactory $orderCollectionFactory
      */
     public function __construct(
-        CustomerRepositoryInterface $customerRepository,
-        CollectionFactory $orderCollection
+        private readonly CustomerRepositoryInterface $customerRepository,
+        private readonly CollectionFactory $orderCollectionFactory
     ) {
-        $this->customerRepository = $customerRepository;
-        $this->orderCollection = $orderCollection;
     }
 
     /**
@@ -52,6 +40,7 @@ class Order implements ResolverInterface
      * @throws GraphQlAuthorizationException
      * @throws GraphQlNoSuchEntityException
      * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
@@ -71,13 +60,14 @@ class Order implements ResolverInterface
      * @param $customerEmail
      * @return array
      * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     private function getOrderData($customerEmail) : array
     {
         try {
             $result = [];
             $customer = $this->customerRepository->get($customerEmail);
-            $orders = $this->orderCollection->create()->addFieldToFilter('customer_email', $customerEmail);
+            $orders = $this->orderCollectionFactory->create()->addFieldToFilter('customer_email', $customerEmail);
 
             $result['customer_name'] = $customer->getFirstname() . ' ' . $customer->getLastname();
             $result['customer_email'] = $customer->getEmail();
@@ -90,13 +80,11 @@ class Order implements ResolverInterface
                     'order_status' => $order->getStatus(),
                     'order_grand_total' => $order->getGrandTotal()
                 ];
-                $result['customer_total_amount'] += $order->getTotalPaid() ? $order->getTotalPaid() : 0;
+                $result['customer_total_amount'] += $order->getTotalPaid() ?? 0;
             }
             return $result ?? [];
         } catch (NoSuchEntityException $e) {
-            throw new GraphQlNoSuchEntityException(__($e->getMessage()));
-        } catch (LocalizedException $e) {
-            throw new NoSuchEntityException(__($e->getMessage()));
+            throw new GraphQlNoSuchEntityException(__('Had some error when build order infors'));
         }
     }
 }
