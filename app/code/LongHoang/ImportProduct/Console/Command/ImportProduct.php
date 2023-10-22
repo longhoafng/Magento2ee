@@ -9,6 +9,7 @@ use Magento\Framework\App\State;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Directory\ReadFactory;
+use Magento\Framework\Filesystem\Driver\File;
 use Magento\ImportExport\Model\Import\Source\CsvFactory;
 use Magento\ImportExport\Model\ImportFactory;
 use Symfony\Component\Console\Command\Command;
@@ -46,11 +47,17 @@ class ImportProduct extends Command
     private $readFactory;
 
     /**
+     * @var File
+     */
+    private $file;
+
+    /**
      * @param DirectoryList $directoryList
      * @param State $state
      * @param ImportFactory $importFactory
      * @param CsvFactory $csvFactory
      * @param ReadFactory $readFactory
+     * @param File $file
      * @param string|null $name
      */
     public function __construct(
@@ -59,6 +66,7 @@ class ImportProduct extends Command
         ImportFactory $importFactory,
         CsvFactory $csvFactory,
         ReadFactory $readFactory,
+        File $file,
         string $name = null
     ) {
         $this->directoryList = $directoryList;
@@ -66,6 +74,7 @@ class ImportProduct extends Command
         $this->importFactory = $importFactory;
         $this->csvFactory = $csvFactory;
         $this->readFactory = $readFactory;
+        $this->file = $file;
         parent::__construct($name);
     }
 
@@ -102,34 +111,40 @@ class ImportProduct extends Command
      */
     private function importProduct(OutputInterface $output): void
     {
-        $filename = 'import_product_*_.csv';
-        $file = $this->directoryList->getPath('var') . '/import/product/' . $filename;
+        $fileList = glob('var/import/product/*.csv');
+        if (count($fileList) > 0) {
+            foreach ($fileList as $filename) {
+                $filePath = $this->directoryList->getRoot() . DIRECTORY_SEPARATOR . $filename;
+                $importFile = pathinfo($filePath);
+                $import = $this->importFactory->create();
+                $import->setData(
+                    [
+                        'entity' => 'catalog_product',
+                        'behavior' => 'append',
+                        'validation_strategy' => 'validation-stop-on-errors',
+                    ]
+                );
 
-        $importFile = pathinfo($file);
-        $import = $this->importFactory->create();
-        $import->setData(
-            [
-                'entity' => 'catalog_product',
-                'behavior' => 'append',
-                'validation_strategy' => 'validation-stop-on-errors',
-            ]
-        );
+                $readFile = $this->readFactory->create($importFile['dirname']);
+                $csvSource = $this->csvFactory->create([
+                    'file' => $importFile['basename'],
+                    'directory' => $readFile,
+                ]);
 
-        $readFile = $this->readFactory->create($importFile['dirname']);
-        $csvSource = $this->csvFactory->create([
-            'file' => $importFile['basename'],
-            'directory' => $readFile,
-        ]);
+                $validate = $import->validateSource($csvSource);
+                if (!$validate) {
+                    $output->writeln('<error>The CSV is invalid.</error>');
+                }
 
-        $validate = $import->validateSource($csvSource);
-        if (!$validate) {
-            $output->writeln('<error>The CSV is invalid.</error>');
+                $result = $import->importSource();
+                if ($result) {
+                    $import->invalidateIndex();
+                }
+                $output->writeln("<info>Finished importing products from $filePath</info>");
+                $this->file->deleteFile($filePath);
+            }
+        } else {
+            $output->writeln('<error>There is no csv file to import.</error>');
         }
-
-        $result = $import->importSource();
-        if ($result) {
-            $import->invalidateIndex();
-        }
-        $output->writeln("<info>Finished importing products from $file</info>");
     }
 }
